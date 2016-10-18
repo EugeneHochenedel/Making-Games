@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Boid : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+namespace Boid
+{
+    public interface IBoids
+    {
+        Vector3 Velocity { get; set; }
+        Vector3 Position { get; set; }
+        float Mass { get; set; }
+    }
 }

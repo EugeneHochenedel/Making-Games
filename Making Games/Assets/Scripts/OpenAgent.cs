@@ -1,38 +1,21 @@
 ﻿using UnityEngine;
+using System.Collections;
 using Boid;
 
-public class OpenAgent : MonoBehaviour, IBoids
+/// <summary>
+/// Allows for access to values defined in the Agent class
+/// </summary>
+
+public class OpenAgent : MonoBehaviour
 {
-    private Agent bond;
-    public float mass;
+    public Agent bond;
+    public float Mass;
 
-    public Vector3 Velocity
-    {
-        get { return bond.Velocity; }
-        set { bond.Velocity = value; }
-    }
-
-    public Vector3 Position
-    {
-        get { return bond.Position; }
-        set { bond.Position = value; }
-    }
-
-    float IBoids.Mass
-    {
-        get { return bond.Mass; }
-        set { bond.Mass = value; }
-    }
-
-    void Start()
-    {
-        bond = new Agent(mass);
-    }
+    void Start() { bond = new Agent(Mass); }
 
     void LateUpdate()
     {
         bond.velocityUpdate();
+        transform.position = bond.Position;
     }
 }
-
-

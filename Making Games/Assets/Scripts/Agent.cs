@@ -1,29 +1,13 @@
 ﻿using UnityEngine;
+//using System.Collections;
 using Boid;
+//using System;
 
 public class Agent : IBoids
 {
-    private Vector3 v_Velocity;
-    private Vector3 v_Pos;
-    private float f_Mass;
-
-    public Vector3 Velocity
-    {
-        get { return v_Velocity; }
-        set { v_Velocity = value; }
-    }
-
-    public Vector3 Position
-    {
-        get { return v_Pos; }
-        set { v_Pos = value; }
-    }
-
-    public float Mass
-    {
-        get { return f_Mass; }
-        set { f_Mass = value; }
-    }
+    private Vector3 vecVelocity;
+    private Vector3 vecPos;
+    private float fMass;
 
     public Agent(float fM)
     {
@@ -31,6 +15,24 @@ public class Agent : IBoids
         Position = new Vector3();
         Mass = (fM <= 0) ? 1 : fM;
 	}
+
+    public Vector3 Velocity
+    {
+        get { return vecVelocity; }
+        set { vecVelocity = value; }
+    }
+
+    public Vector3 Position
+    {
+        get { return vecPos; }
+        set { vecPos = value; }
+    }
+
+    public float Mass
+    {
+        get { return fMass; }
+        set { fMass = value; }
+    }
 
     public void velocityUpdate()
     {

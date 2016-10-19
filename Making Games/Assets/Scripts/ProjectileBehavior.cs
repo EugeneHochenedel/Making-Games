@@ -3,34 +3,27 @@ using System.Collections;
 
 public class ProjectileBehavior : MonoBehaviour
 {
-    //public Vector3 Force;
-    Vector3 currentVelocity;
-    public float Mass;
-
+    OpenAgent j;
+   
     public Transform targetPosition;
     Vector3 SteeringForce;
     Vector3 targetVelocity;
-    //public float Seek;
+    public float Seek;
 
 	// Use this for initialization
-	void FixedUpdate ()
+    void Start() { j = gameObject.GetComponent<OpenAgent>(); }
+
+    // Update is called once per frame
+    void FixedUpdate ()
     {
         //transform.position = transform.position + (currentVelocity / Mass).normalized;
-
         targetVelocity = (targetPosition.position - transform.position).normalized;
-        SteeringForce = (targetVelocity - currentVelocity).normalized / Mass;
-        currentVelocity += SteeringForce;
+        SteeringForce = (targetVelocity - j.bond.Velocity).normalized * Seek;
+        j.bond.Velocity += SteeringForce / j.bond.Mass;
 
-        if(currentVelocity.magnitude > 5)
+        if(j.bond.Velocity.magnitude > 5)
         {
-            currentVelocity = currentVelocity.normalized;
+            j.bond.Velocity = j.bond.Velocity.normalized;
         }
-
-	}
-	
-	// Update is called once per frame
-	void LateUpdate ()
-    {
-        transform.position += currentVelocity;
 	}
 }
